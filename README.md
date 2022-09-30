@@ -1,0 +1,1 @@
+# django_homework__lukianitca_mykyta
