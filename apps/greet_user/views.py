@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from webargs import fields
 
-from apps.greet_user.services import generate_fake_name
+from apps.base.services import generate_fake_name
 
 
 def greetings(request, username: str | None = None):
