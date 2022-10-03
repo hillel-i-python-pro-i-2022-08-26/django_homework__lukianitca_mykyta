@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        .nav-list {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-list__link {
+            color: black;
+            font-size: 29px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    {% include "_helpers/_header.html" %}
+
+    {% block content %}{% endblock %}
+</body>
+</html>
