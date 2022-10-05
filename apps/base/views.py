@@ -11,3 +11,7 @@ def greetings(request, username: str | None = None):
     if not username:
         username = generate_fake_name()
     return render(request, "greet_user/index.html", {"username": username, "title": "Greetings"})
+
+
+def users_info(request, amount_users: int):
+    pass
