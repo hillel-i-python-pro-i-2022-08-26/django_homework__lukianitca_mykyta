@@ -1,4 +1,5 @@
 from django.urls import path
+
 from . import views
 
 app_name = "base"
@@ -11,7 +12,7 @@ greet_user_homework = [
 
 
 generate_accounts_homework = [
-    path("unique_users/", views.users_info, name="unique_accounts"),
+    path("unique_users/", views.users_info, name="unique_users"),
     path("unique_users/<int:amount_users>", views.users_info),
 ]
 

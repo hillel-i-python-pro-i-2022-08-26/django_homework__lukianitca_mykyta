@@ -20,4 +20,4 @@ def greetings(request, username: str | None = None):
 
 def users_info(request, amount_users: int | None = 10):
     users_list = UsersDataGenerator(amount_users).unique_users
-    return render(request, "base/unique_accounts.html", {"title": "Unique Accounts", "accounts": users_list})
+    return render(request, "base/unique_users.html", {"title": "Unique Users", "unique_users": users_list})
