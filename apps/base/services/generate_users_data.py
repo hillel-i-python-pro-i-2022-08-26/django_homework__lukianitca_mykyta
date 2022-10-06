@@ -1,9 +1,11 @@
-from faker import Faker
-from apps.base.services.models import User
-from faker.exceptions import UniquenessException
-from apps.base.services import get_safe_chars
 from random import choice, randint
+
+from faker import Faker
+from faker.exceptions import UniquenessException
+
+from apps.base.services import get_safe_chars
 from apps.base.services.fake_data_types import *
+from apps.base.services.models import User
 
 
 class FakeEngine:
