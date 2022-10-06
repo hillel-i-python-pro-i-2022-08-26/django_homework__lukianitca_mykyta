@@ -1,0 +1,18 @@
+{% extends '_helpers/_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="page-title">
+        <h2>Accounts with unique data:</h2>
+    </div>
+    <ol style="list-style: none;">
+        {% for account in accounts %}
+            <li style="border: black solid 1px; padding-left: 15px;">
+                <p>Username: {{ account.username }}</p>
+                <p>Email: {{ account.email }}</p>
+                <p>Password: {{ account.password }}</p>
+            </li>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock %}
