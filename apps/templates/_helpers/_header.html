@@ -1,14 +1,17 @@
 <header>
-    <ul class="nav-list">
-        <li>
-            <a href="{% url 'base:index' %}" class="nav-list__link">
+    <nav class="nav-links">
+        <div class="nav-links__main-page">
+            <a href="{% url 'base:index' %}" class="nav-links__main-link">
                 Home
             </a>
-        </li>
-        <li>
-            <a href="{% url 'base:greetings' %}" class="nav-list__link">
+        </div>
+        <div class="nav-links__other-links">
+            <a href="{% url 'base:greetings' %}">
                 First Words
             </a>
-        </li>
-    </ul>
+            <a href="{% url 'base:unique_accounts' %}">
+                Unique Accounts
+            </a>
+        </div>
+    </nav>
 </header>
