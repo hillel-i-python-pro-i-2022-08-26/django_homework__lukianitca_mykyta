@@ -10,7 +10,12 @@ def index(request):
 def greetings(request, username: str | None = None):
     if not username:
         username = FakeEngine().generate_fake_name()
-    return render(request, "base/greet_user.html", {"username": username, "title": "Greetings"})
+    context = {
+        "username": username,
+        "title": "Greetings",
+        "current_offers": [f"Offer {i}" for i in range(1, 6)],
+    }
+    return render(request, "base/greet_user.html", context)
 
 
 def users_info(request, amount_users: int | None = None):
