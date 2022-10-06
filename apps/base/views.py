@@ -18,6 +18,6 @@ def greetings(request, username: str | None = None):
     return render(request, "base/greet_user.html", context)
 
 
-def users_info(request, amount_users: int | None = None):
+def users_info(request, amount_users: int | None = 10):
     users_list = UsersDataGenerator(amount_users).unique_users
     return render(request, "base/unique_accounts.html", {"title": "Unique Accounts", "accounts": users_list})
