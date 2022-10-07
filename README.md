@@ -10,4 +10,6 @@
 ### Available path's:
 * `/`
 * `/greetings`
-* `/greetings/<str:username>`
+* `/greetings/<username>`
+* `/unique_users`
+* `/unique_users/<amount_users>`

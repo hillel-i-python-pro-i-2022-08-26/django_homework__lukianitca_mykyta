@@ -4,17 +4,34 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <style>
-        .nav-list {
-            list-style-type: none;
+        body {
+            box-sizing: border-box;
+            background: floralwhite;
+        }
+
+        .nav-links {
             display: flex;
             justify-content: space-between;
         }
 
-        .nav-list__link {
-            color: black;
+        .nav-links__main-link {
             font-size: 29px;
+            color: black;
             text-decoration: none;
         }
+
+        .nav-links__other-links {
+            width: 500px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav-links__other-links > a {
+            font-size: 25px;
+            color: black;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 <body>

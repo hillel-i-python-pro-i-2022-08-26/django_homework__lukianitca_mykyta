@@ -1,0 +1,18 @@
+{% extends '_helpers/_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="page-title">
+        <h2>Users with unique data:</h2>
+    </div>
+    <ol style="list-style: none;">
+        {% for user in unique_users %}
+            <li style="border: black solid 1px; padding-left: 15px;">
+                <p>Username: {{ user.username }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>Password: {{ user.password }}</p>
+            </li>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock %}
