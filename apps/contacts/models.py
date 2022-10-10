@@ -7,3 +7,7 @@ class Contacts(models.Model):
     birth_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+
+        ordering = ['created_at']
