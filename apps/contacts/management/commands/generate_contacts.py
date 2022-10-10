@@ -21,7 +21,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        amount_contacts = options["amount_contacts"]
+        amount_contacts = options["amount"]
         self.logger.info(f"Contacts to generate: {amount_contacts}")
         current_amount_contacts = Contacts.objects.all().count()
         self.logger.info(f"Current amount of contacts: {current_amount_contacts}")

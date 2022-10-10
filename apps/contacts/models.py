@@ -9,5 +9,4 @@ class Contacts(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-
         ordering = ['created_at']

@@ -12,7 +12,7 @@ class FakeProvide:
 
     def generate_one_contact(self, minimal_age: int = 11) -> T_CONTACT:
         fake_user_data = {
-            "contact_name": self._faker.fake_name(),
+            "contact_name": self._faker.name(),
             "phone_number": self._faker.phone_number(),
             "birth_date": self._faker.date_of_birth(minimum_age=minimal_age),
         }
