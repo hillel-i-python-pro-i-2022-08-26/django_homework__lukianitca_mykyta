@@ -1,5 +1,5 @@
 from typing import TypeAlias
 
-from apps.contacts.services import Contact
+from apps.contacts.models import Contacts
 
-T_CONTACT = Contact
+T_CONTACT: TypeAlias = Contacts
