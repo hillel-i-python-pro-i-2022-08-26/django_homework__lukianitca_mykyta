@@ -1,6 +1,6 @@
 import logging
 
-from django.core.management import BaseCommand, CommandParser
+from django.core.management import BaseCommand
 from django.utils import timezone
 
 from apps.contacts.models import Contacts
@@ -14,9 +14,10 @@ class Command(BaseCommand):
         self.logger = logging.getLogger("django")
 
     def handle(self, *args, **options):
-        self.logger.info("Start deleting old contacts")
-        sorted_contacts = Contacts.objects.order_by("created_at")
         datetime_delete = timezone.now() - timezone.timedelta(minutes=1)
-        sorted_contacts.filter(created_at__lt=datetime_delete).delete()
-        self.logger.info("Old data deleted")
-
+        sorted_contacts = Contacts.objects.order_by("created_at").filter(created_at__lt=datetime_delete)
+        if sorted_contacts:
+            self.logger.info("Start deleting old contacts")
+            sorted_contacts.delete()
+            self.logger.info("Old data deleted")
+        self.logger.info("Old data was not found")

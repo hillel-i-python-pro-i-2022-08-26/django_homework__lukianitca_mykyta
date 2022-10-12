@@ -1,6 +1,7 @@
 import logging
 
-from django.core.management import BaseCommand, CommandParser
+from django.core.management import BaseCommand
+
 from apps.contacts.models import Contacts
 
 
@@ -12,7 +13,10 @@ class Command(BaseCommand):
         self.logger = logging.getLogger("django")
 
     def handle(self, *args, **options):
-        self.logger.info("Start clear contacts")
-        Contacts.objects.all().delete()
-        self.logger.info("Contacts cleared")
+        old_contacts = Contacts.objects.all()
+        if old_contacts:
+            self.logger.info("Start clear contacts")
+            old_contacts.delete()
+            self.logger.info("Contacts cleared")
+        self.logger.info("Contact's list already empty")
 
