@@ -2,13 +2,17 @@
 
 {% block content %}
 <div>
-    {% for contact in contacts %}
-        <div>
-            <h2>{{ contact.contact_name }}</h2>
-            <p>{{ contact.phone_number }}</p>
-            <p>{{ contact.birth_date }}</p>
-        </div>
-        <hr>
-    {% endfor %}
+    {% if contacts %}
+        {% for contact in contacts %}
+            <div>
+                <h2>{{ contact.contact_name }}</h2>
+                <p>{{ contact.phone_number }}</p>
+                <p>{{ contact.birth_date }}</p>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <h2>Contact list is empty :(</h2>
+    {% endif %}
 </div>
 {% endblock %}
