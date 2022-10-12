@@ -8,8 +8,14 @@
 `make homework-i-run`
 
 ### Available path's:
+#### Base routes:
 * `/`
 * `/greetings`
 * `/greetings/<username>`
-* `/unique_users`
-* `/unique_users/<amount_users>`
+
+#### Unique users:
+* `/unique-users`
+* `/unique-users/<amount_users>`
+
+#### Contacts:
+* `/contacts/show-contacts`

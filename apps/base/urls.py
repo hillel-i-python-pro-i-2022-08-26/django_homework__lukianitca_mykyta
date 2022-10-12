@@ -12,8 +12,8 @@ greet_user_homework = [
 
 
 generate_accounts_homework = [
-    path("unique_users/", views.users_info, name="unique_users"),
-    path("unique_users/<int:amount_users>", views.users_info),
+    path("unique-users/", views.users_info, name="unique_users"),
+    path("unique-users/<int:amount_users>", views.users_info),
 ]
 
 urlpatterns = greet_user_homework + generate_accounts_homework
