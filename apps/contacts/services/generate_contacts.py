@@ -3,7 +3,7 @@ from typing import Iterator
 from faker import Faker
 
 from apps.contacts.models import Contacts
-from apps.contacts.services import T_CONTACT
+from apps.contacts.services.typing import T_CONTACT
 
 
 class FakeProvide:
