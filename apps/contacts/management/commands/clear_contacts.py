@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         old_contacts = Contacts.objects.all()
-        if old_contacts:
+        if not old_contacts:
             self.logger.info("Contact's list already empty")
             return
         self.logger.info("Start clear contacts")
