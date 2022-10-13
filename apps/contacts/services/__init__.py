@@ -1,0 +1,1 @@
+from .generate_contacts import generate_fake_contacts
