@@ -6,5 +6,6 @@ app_name = "contacts"
 
 urlpatterns = [
     path("show-contacts/", views.show_contacts, name="show_contacts"),
-    path("add-contact/", views.add_contact, name='add_contact')
+    path("detail-contact/user_id", views.detail_contact, name="detail_contact"),
+    path("add-contact/", views.add_contact, name='add_contact'),
 ]

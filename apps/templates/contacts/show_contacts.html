@@ -1,16 +1,29 @@
 {% extends "_helpers/_base.html" %}
+{% load static %}
+
+{% block scripts %}
+<script src="{% static "contacts/js/search.js" %}"></script>
+{% endblock %}
 
 {% block content %}
 <div>
     {% if contacts %}
+        <div class="search-wrapper">
+            <label for="search">Search Users</label>
+            <input type="search" id="search" data-search>
+        </div>
+
         {% for contact in contacts %}
-            <div>
-                <h2>{{ contact.contact_name }}</h2>
+
+            <div class="card" data-contact-div>
+                <a href="{% url "contacts:detail_contact" user_id=contact.pk %}"><h2>{{ contact.contact_name }}</h2></a>
                 <p>{{ contact.phone_number }}</p>
                 <p>{{ contact.birth_date }}</p>
+                <hr>
             </div>
-            <hr>
+
         {% endfor %}
+
     {% else %}
         <h2>Contact list is empty :(</h2>
     {% endif %}
