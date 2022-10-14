@@ -2,7 +2,7 @@ import logging
 
 from django.core.management import BaseCommand
 
-from apps.contacts.models import Contacts
+from apps.contacts.models import Contact
 
 
 class Command(BaseCommand):
@@ -13,7 +13,7 @@ class Command(BaseCommand):
         self.logger = logging.getLogger("django")
 
     def handle(self, *args, **options):
-        old_contacts = Contacts.objects.all()
+        old_contacts = Contact.objects.all()
         if not old_contacts:
             self.logger.info("Contact's list already empty")
             return

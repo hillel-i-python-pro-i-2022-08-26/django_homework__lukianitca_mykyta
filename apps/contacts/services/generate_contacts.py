@@ -2,7 +2,7 @@ from typing import Iterator
 
 from faker import Faker
 
-from apps.contacts.models import Contacts
+from apps.contacts.models import Contact
 from apps.contacts.services.typing import T_CONTACT
 
 
@@ -16,7 +16,7 @@ class FakeProvide:
             "phone_number": self._faker.phone_number(),
             "birth_date": self._faker.date_of_birth(minimum_age=minimal_age),
         }
-        return Contacts(**fake_user_data)
+        return Contact(**fake_user_data)
 
 
 def generate_fake_contacts(amount_contacts: int = 20) -> Iterator[T_CONTACT]:
