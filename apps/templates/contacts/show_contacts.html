@@ -16,7 +16,7 @@
         {% for contact in contacts %}
 
             <div class="card" data-contact-div>
-                <a href="{% url "contacts:detail_contact" user_id=contact.pk %}"><h2>{{ contact.contact_name }}</h2></a>
+                <a href="{{ contact.get_absolute_url }}"><h2>{{ contact.contact_name }}</h2></a>
                 <p>{{ contact.phone_number }}</p>
                 <p>{{ contact.birth_date }}</p>
                 <hr>
