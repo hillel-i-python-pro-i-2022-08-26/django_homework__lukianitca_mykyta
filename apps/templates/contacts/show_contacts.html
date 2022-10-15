@@ -39,7 +39,7 @@
                         <a href="{{ contact.get_update_url }}">
                             <img src="{% static "contacts/icons/edit.svg" %}" class="contact__icon" alt="edit contact">
                         </a>
-                        <a href="#">
+                        <a href="{{ contact.get_delete_url }}">
                             <img src="{% static "contacts/icons/trash.svg" %}" class="contact__icon" alt="delete contact">
                         </a>
                     </div>

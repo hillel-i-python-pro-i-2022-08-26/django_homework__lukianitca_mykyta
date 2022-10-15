@@ -1,5 +1,5 @@
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from apps.contacts.forms import AddContactForm
 from apps.contacts.models import Contact
@@ -38,3 +38,9 @@ def update_contact(request, contact_id):
     else:
         form = AddContactForm(instance=contact_obj)
     return render(request, "contacts/update_contact.html", {"title": "Update Contact", "form": form})
+
+
+def delete_contact(request, contact_id):
+    obj = get_object_or_404(Contact, pk=contact_id)
+    obj.delete()
+    return redirect("contacts:show_contacts")

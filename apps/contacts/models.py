@@ -15,5 +15,8 @@ class Contact(models.Model):
     def get_update_url(self):
         return reverse("contacts:update_contact", kwargs={"contact_id": self.pk})
 
+    def get_delete_url(self):
+        return reverse("contacts:delete_contact", kwargs={"contact_id": self.pk})
+
     class Meta:
         ordering = ['created_at']
