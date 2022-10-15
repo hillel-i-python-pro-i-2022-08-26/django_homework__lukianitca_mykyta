@@ -1,12 +1,18 @@
 body {
     box-sizing: border-box;
-    background: floralwhite;
+    font-family: 'Open Sans', sans-serif;
+    background: #ffffff;
+}
+
+header {
+    padding: 1rem;
+    background: #e8e8e8;
 }
 
 .nav-links {
-    margin: 1rem;
     display: flex;
     justify-content: space-between;
+
 }
 
 .nav-links__main-link {
