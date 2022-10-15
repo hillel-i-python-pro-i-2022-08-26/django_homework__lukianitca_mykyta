@@ -10,28 +10,43 @@
 {% endblock %}
 
 {% block content %}
-<div>
+<div class="body">
     {% if contacts %}
-        <div class="search-wrapper">
-            <label for="search">Search Users</label>
-            <input type="search" id="search" data-search>
-        </div>
-        {% for contact in contacts %}
-
-            <div class="card" data-contact-div>
-                <h2>
-                    <a href="{{ contact.get_absolute_url }}">{{ contact.contact_name }}</a>
-                </h2>
-                <p>{{ contact.phone_number }}</p>
-                <p>{{ contact.birth_date }}</p>
-                <a href="{{ contact.get_update_url }}">
-                    Update
-                </a>
-                <hr>
+        <div class="container">
+            <div class="search-wrapper">
+                <label for="search" class="label-search">Search Users:</label>
+                <input type="search" id="search" data-search>
             </div>
 
-        {% endfor %}
+            {% for contact in contacts %}
+                <div class="contact-card shadow" data-search-div>
 
+                    <div class="contact-data">
+                        <div class="contact-image__container">
+                            <img src="{% static "contacts/temp_photo/contact_profile.jpg" %}" class="contact__image" alt="contact image">
+                        </div>
+                        <div class="contact-info__container">
+                            <h2 class="contact__title">
+                                Name: <a href="{{ contact.get_absolute_url }}">
+                                        {{ contact.contact_name }}
+                                    </a>
+                            </h2>
+                            <p class="contact__number">Phone: {{ contact.phone_number }}</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-icons__container">
+                        <a href="{{ contact.get_update_url }}">
+                            <img src="{% static "contacts/icons/edit.svg" %}" class="contact__icon" alt="edit contact">
+                        </a>
+                        <a href="#">
+                            <img src="{% static "contacts/icons/trash.svg" %}" class="contact__icon" alt="delete contact">
+                        </a>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
     {% else %}
         <h2>Contact list is empty :(</h2>
     {% endif %}

@@ -7,19 +7,22 @@
 
 
 {% block content %}
-<div class="form-wrapper">
-    <h2 class="form-description">Update contact</h2>
-    <form action="{{ form.instance.get_update_url }}" method="post">
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="form-field">
-                {{ field.errors }}
-                {{ field.label_tag }} {{ field }}
-            </div>
-        {% endfor %}
+<div class="body">
+    <div class="container">
+        <div class="form-wrapper">
+            <h2 class="form-description">Update contact</h2>
+            <form action="{{ form.instance.get_update_url }}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-field">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                    </div>
+                {% endfor %}
 
-        <input type="submit" value="Update" class="submit">
-    </form>
+                <input type="submit" value="Update" class="submit">
+            </form>
+        </div>
+    </div>
 </div>
-
 {% endblock %}
