@@ -10,7 +10,10 @@ class Contact(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
-        return reverse("contacts:detail_contact", kwargs={"user_id": self.pk})
+        return reverse("contacts:detail_contact", kwargs={"contact_id": self.pk})
+
+    def get_update_url(self):
+        return reverse("contacts:update_contact", kwargs={"contact_id": self.pk})
 
     class Meta:
         ordering = ['created_at']
