@@ -1,0 +1,25 @@
+{% extends "_helpers/_base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static "contacts/css/form.css" %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="form-wrapper">
+    <h2 class="form-description">Update contact</h2>
+    <form action="{{ form.instance.get_update_url }}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-field">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
+
+        <input type="submit" value="Update" class="submit">
+    </form>
+</div>
+
+{% endblock %}
