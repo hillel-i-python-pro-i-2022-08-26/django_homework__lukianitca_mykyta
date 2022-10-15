@@ -1,43 +1,20 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
-    <style>
-        body {
-            box-sizing: border-box;
-            background: floralwhite;
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .nav-links__main-link {
-            font-size: 29px;
-            color: black;
-            text-decoration: none;
-        }
-
-        .nav-links__other-links {
-            width: 50%;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .nav-links__other-links > a {
-            font-size: 25px;
-            color: black;
-            text-decoration: none;
-        }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static "base_styles/clear_styles.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "base_styles/styles.css" %}">
+    {% block styles %}{% endblock %}
 </head>
 <body>
 
     {% include "_helpers/_header.html" %}
 
     {% block content %}{% endblock %}
+
+    {% block scripts %}{% endblock %}
 </body>
 </html>

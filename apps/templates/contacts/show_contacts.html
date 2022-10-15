@@ -1,6 +1,10 @@
 {% extends "_helpers/_base.html" %}
 {% load static %}
 
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static "contacts/css/show_contacts.css" %}">
+{% endblock %}
+
 {% block scripts %}
 <script src="{% static "contacts/js/search.js" %}"></script>
 {% endblock %}
@@ -12,7 +16,6 @@
             <label for="search">Search Users</label>
             <input type="search" id="search" data-search>
         </div>
-
         {% for contact in contacts %}
 
             <div class="card" data-contact-div>
