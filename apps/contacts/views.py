@@ -10,8 +10,9 @@ def show_contacts(request: HttpRequest) -> HttpResponse:
     return render(request, "contacts/show_contacts.html", {"title": "Contacts List", "contacts": contacts_list})
 
 
-def detail_contact(request, user_id):
-    return render(request, "contacts/detail_contact.html", {"title": "Detail Contact"})
+def detail_contact(request, contact_id):
+    contact_obj = Contact.objects.get(pk=contact_id)
+    return render(request, "contacts/detail_contact.html", {"title": "Detail Contact", "contact": contact_obj})
 
 
 def add_contact(request: HttpRequest) -> HttpResponse:
@@ -26,10 +27,14 @@ def add_contact(request: HttpRequest) -> HttpResponse:
     return render(request, "contacts/add_contact.html", {"title": "Add Contact", "form": form})
 
 
-def update_contact(request):
+def update_contact(request, contact_id):
+    contact_obj = Contact.objects.get(pk=contact_id)
     if request.method == "POST":
-        form = AddContactForm(request.POST)
+        form = AddContactForm(request.POST, instance=contact_obj)
         if form.is_valid():
-            form.save()
-            return redirect("contacts:show_contacts")
-        return render(request, "contacts/add_contact.html", {"title": "Add Contact", "form": form})
+            updated_contact = form.save()
+            return redirect(updated_contact)
+        return render(request, "contacts/update_contact.html", {"title": "Update Contact", "form": form})
+    else:
+        form = AddContactForm(instance=contact_obj)
+    return render(request, "contacts/update_contact.html", {"title": "Update Contact", "form": form})
