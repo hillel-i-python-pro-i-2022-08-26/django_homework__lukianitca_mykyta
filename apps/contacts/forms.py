@@ -7,7 +7,7 @@ from django.utils import timezone
 from apps.contacts import models
 
 
-class AddContactForm(forms.ModelForm):
+class ContactForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.minimal_date = datetime.date(day=1, month=1, year=1910)

@@ -19,4 +19,4 @@ class Contact(models.Model):
         return reverse("contacts:delete_contact", kwargs={"contact_id": self.pk})
 
     class Meta:
-        ordering = ['created_at']
+        ordering = ['contact_name']
