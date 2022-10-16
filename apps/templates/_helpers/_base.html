@@ -12,10 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     {% block styles %}{% endblock %}
 </head>
+
 <body>
-        {% include "_helpers/_header.html" %}
-        <div class="body">
-            <div class="container">
+    {% include "_helpers/_header.html" %}
+    <div class="body">
+        <div class="container">
             {% block content %}{% endblock %}
 
             {% block scripts %}{% endblock %}

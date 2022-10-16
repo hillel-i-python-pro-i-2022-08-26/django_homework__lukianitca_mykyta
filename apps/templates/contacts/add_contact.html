@@ -7,19 +7,19 @@
 
 
 {% block content %}
-        <div class="form-wrapper">
-            <h2 class="form-description">Add contact</h2>
-            <form action="{% url 'contacts:add_contact' %}" method="post">
-                {% csrf_token %}
+<div class="form-wrapper">
+    <h2 class="form-description">Add contact</h2>
+    <form action="{% url 'contacts:add_contact' %}" method="post">
+        {% csrf_token %}
 
-                {% for field in form %}
-                    <div class="form-field">
-                        {{ field.errors }}
-                        {{ field.label_tag }} {{ field }}
-                    </div>
-                {% endfor %}
+        {% for field in form %}
+            <div class="form-field">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
 
-                <input type="submit" value="Submit" class="submit">
-            </form>
-        </div>
+        <input type="submit" value="Submit" class="submit">
+    </form>
+</div>
 {% endblock %}
