@@ -1,16 +1,3 @@
-.body {
-    display: flex;
-    min-height: 100%;
-    justify-content: center;
-    background: rgba(227, 227, 218, 0.25);
-}
-
-.container {
-    margin: auto;
-    width: 55%;
-    background-color: #ffffff;
-}
-
 .search-wrapper {
     width: 600px;
     margin: 2rem auto;

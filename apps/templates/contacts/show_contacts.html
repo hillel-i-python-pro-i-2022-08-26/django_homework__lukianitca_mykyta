@@ -10,8 +10,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="body">
-    <div class="container">
     {% if contacts %}
             <div class="search-wrapper">
                 <label for="search" class="label-search">Search Users:</label>
@@ -53,6 +51,4 @@
     {% else %}
         <h2>Contact list is empty :(</h2>
     {% endif %}
-    </div>
-</div>
 {% endblock %}

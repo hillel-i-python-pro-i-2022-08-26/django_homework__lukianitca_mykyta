@@ -1,18 +1,4 @@
-.body {
-    display: flex;
-    justify-content: center;
-    background: rgba(227, 227, 218, 0.25);
-    height: 100%;
-}
-
-.container {
-    width: 40%;
-    min-height: 100%;
-    background-color: #ffffff;
-}
-
 .form-wrapper {
-    width: 40%;
     height: 100%;
     margin: 2rem auto;
     background-color: #ffffff;

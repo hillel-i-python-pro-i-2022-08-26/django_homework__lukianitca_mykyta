@@ -7,8 +7,6 @@
 
 
 {% block content %}
-<div class="body">
-    <div class="container">
         <div class="form-wrapper">
             <h2 class="form-description">Add contact</h2>
             <form action="{% url 'contacts:add_contact' %}" method="post">
@@ -24,6 +22,4 @@
                 <input type="submit" value="Submit" class="submit">
             </form>
         </div>
-    </div>
-</div>
 {% endblock %}
