@@ -1,0 +1,20 @@
+<div class="modal" id="modal">
+    <div class="modal-header">
+        <div class="title">Are you sure?</div>
+        <button class="close-button" data-close-button>&times;</button>
+    </div>
+    <div class="modal-body">
+        <div class="contact-name">Name: {{ contact.contact_name }}</div>
+        <div class="contact-phone">Phone: {{ contact.phone_number }}</div>
+    </div>
+    <div class="modal-footer">
+        <div class="buttons__container__popup">
+            <button data-close-button class="button button-cancel">Cancel</button>
+            <form method="post" action="{{ contact.get_delete_url }}">
+                {% csrf_token %}
+                <button class="button button-delete" type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="overlay"></div>
