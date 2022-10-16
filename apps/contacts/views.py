@@ -10,7 +10,7 @@ def show_contacts(request: HttpRequest) -> HttpResponse:
     return render(request, "contacts/show_contacts.html", {"title": "Contacts List", "contacts": contacts_list})
 
 
-def detail_contact(request, contact_id):
+def detail_contact(request: HttpRequest, contact_id: int) -> HttpResponse:
     contact_obj = Contact.objects.get(pk=contact_id)
     return render(request, "contacts/detail_contact.html", {"title": "Detail Contact", "contact": contact_obj})
 
@@ -19,15 +19,15 @@ def add_contact(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("contacts:show_contacts")
+            new_contact = form.save()
+            return redirect(new_contact)
         return render(request, "contacts/add_contact.html", {"title": "Add Contact", "form": form})
     else:
         form = ContactForm()
     return render(request, "contacts/add_contact.html", {"title": "Add Contact", "form": form})
 
 
-def update_contact(request, contact_id):
+def update_contact(request: HttpRequest, contact_id: int) -> HttpResponse:
     contact_obj = Contact.objects.get(pk=contact_id)
     if request.method == "POST":
         form = ContactForm(request.POST, instance=contact_obj)
@@ -40,6 +40,6 @@ def update_contact(request, contact_id):
     return render(request, "contacts/update_contact.html", {"title": "Update Contact", "form": form})
 
 
-def delete_contact(request, contact_id):
+def delete_contact(request: HttpRequest, contact_id: int) -> HttpResponse:
     Contact.objects.get(pk=contact_id).delete()
     return redirect("contacts:show_contacts")
