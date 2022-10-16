@@ -1,5 +1,4 @@
 .body {
-    margin-top: 0;
     display: flex;
     min-height: 100%;
     justify-content: center;
@@ -7,7 +6,6 @@
 }
 
 .container {
-    min-height: 1080px;
     margin: auto;
     width: 55%;
     background-color: #ffffff;
@@ -29,6 +27,11 @@
     padding: 7px;
     border: 1px solid rgba(216, 216, 225, 0.56);
     border-radius: 5px;
+}
+
+.add-contact-icon {
+    width: 23px;
+    margin-left: 5px;
 }
 
 .contact-card {
@@ -85,7 +88,7 @@
 .contact-icons__container {
     display: flex;
     margin: 15px;
-    justify-content: space-between;
+    flex-direction: row-reverse;
     width: 60px;
 }
 

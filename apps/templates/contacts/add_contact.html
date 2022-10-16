@@ -2,25 +2,28 @@
 {% load static %}
 
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static "contacts/css/form.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "contacts/css/form.css" %}">
 {% endblock %}
 
 
 {% block content %}
-<div class="form-wrapper">
-    <h2 class="form-description">Add contact</h2>
-    <form action="{% url 'contacts:add_contact' %}" method="post">
-        {% csrf_token %}
+<div class="body">
+    <div class="container">
+        <div class="form-wrapper">
+            <h2 class="form-description">Add contact</h2>
+            <form action="{% url 'contacts:add_contact' %}" method="post">
+                {% csrf_token %}
 
-        {% for field in form %}
-            <div class="form-field">
-                {{ field.errors }}
-                {{ field.label_tag }} {{ field }}
-            </div>
-        {% endfor %}
+                {% for field in form %}
+                    <div class="form-field">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                    </div>
+                {% endfor %}
 
-        <input type="submit" value="Submit" class="submit">
-    </form>
+                <input type="submit" value="Submit" class="submit">
+            </form>
+        </div>
+    </div>
 </div>
-
 {% endblock %}
