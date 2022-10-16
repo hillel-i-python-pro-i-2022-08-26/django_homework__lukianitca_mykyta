@@ -14,12 +14,7 @@ class Command(BaseCommand):
         self.logger = logging.getLogger("django")
 
     def add_arguments(self, parser: CommandParser):
-        parser.add_argument(
-            "--amount",
-            type=int,
-            default=20,
-            help="Amount of contacts to generate"
-        )
+        parser.add_argument("--amount", type=int, default=20, help="Amount of contacts to generate")
 
     def handle(self, *args, **options):
         amount_contacts = options["amount"]
