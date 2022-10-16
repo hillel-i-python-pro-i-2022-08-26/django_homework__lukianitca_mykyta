@@ -18,4 +18,8 @@
 * `/unique-users/<amount_users>`
 
 #### Contacts:
-* `/contacts/show-contacts`
+* `/contacts/show-contacts/`
+* `/contacts/detail-contact/<contact_id>`
+* `/contacts/add-contact/<contact_id>`
+* `/contacts/update-contact/<contact_id>`
+* `/contacts/delete-contact/<contact_id>`
