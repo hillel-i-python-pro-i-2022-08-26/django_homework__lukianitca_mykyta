@@ -5,7 +5,8 @@ homework-i-run:
 .PHONY: init-dev
 init-dev:
 	@python -m pip install --upgrade pip && \
-	pip install --requirement requirements.txt
+	pip install --requirement requirements.txt && \
+	python manage.py createsuperuser_custom
 
 .PHONY: pre-commit-run
 pre-commit-run:

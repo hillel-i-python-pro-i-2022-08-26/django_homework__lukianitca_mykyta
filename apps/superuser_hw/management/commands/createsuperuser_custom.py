@@ -17,7 +17,8 @@ class Command(BaseCommand):
             "password": options["password"],
         }
         try:
-            admin = User.objects.create_superuser(**admin_data)
-            print(f"Admin info for login: {admin_data}")
+            User.objects.create_superuser(**admin_data)
+            print(f"Test admin info for login: {admin_data}")
+            print("In case you need more protected admin object:\npython manage.py createsuperuser_custom --help")
         except IntegrityError:
             print("User already exists")
