@@ -18,5 +18,8 @@ class Contact(models.Model):
     def get_delete_url(self):
         return reverse("contacts:delete_contact", kwargs={"contact_id": self.pk})
 
+    def __str__(self):
+        return self.contact_name
+
     class Meta:
         ordering = ["contact_name"]
