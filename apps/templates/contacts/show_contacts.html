@@ -11,6 +11,10 @@
 
 {% block content %}
     {% if contacts %}
+        <div class="visits-info">
+            <p>Contacts visited: {{ contacts_visited }}</p>
+            <p>Last visit: {{ last_visit }}</p>
+        </div>
         <div class="search-wrapper">
             <label for="search" class="label-search">Search Users:</label>
             <input type="search" id="search" data-search>
