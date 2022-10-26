@@ -12,7 +12,7 @@ def show_contacts(request: HttpRequest) -> HttpResponse:
         "title": "Contacts List",
         "contacts": contacts_list,
         "contacts_visited": request.session.get("visited", 0),
-        "last_visit": request.session.get("last_visit", "Contacts haven't been visited yet")
+        "last_visit": request.session.get("last_visit", "Contacts haven't been visited yet"),
     }
     return render(request, "contacts/show_contacts.html", context)
 
