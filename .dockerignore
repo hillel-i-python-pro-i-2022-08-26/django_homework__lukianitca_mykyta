@@ -1,0 +1,8 @@
+**
+
+!docker/app
+!apps
+!core
+!manage.py
+!Makefile
+!requirements.txt
