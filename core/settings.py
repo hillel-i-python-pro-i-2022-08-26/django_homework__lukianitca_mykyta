@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+if DEBUG:
+    ALLOWED_HOSTS.extend(
+        ["0.0.0.0"]
+    )
 
 # Application definition
 
