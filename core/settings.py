@@ -34,15 +34,10 @@ SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 DEBUG = env.bool("DEBUG")
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
+ALLOWED_HOSTS = []
 
-# if DEBUG:
-#     ALLOWED_HOSTS.extend(
-#         [
-#             "0.0.0.0",
-#             "127.0.0.1",
-#         ]
-#     )
+if DEBUG:
+    ALLOWED_HOSTS.extend(env.list("DJANGO_ALLOWED_HOSTS", default=[]))
 
 # Application definition
 
@@ -100,10 +95,13 @@ WSGI_APPLICATION = "core.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR.joinpath("db") / "db.sqlite3",
-    }
+    "default": env.db_url_config(
+        env.str(
+            "DJANGO_DB_URL",
+            f"postgres://{env.str('POSTGRES_USER')}:{env.str('POSTGRES_PASSWORD')}"
+            f"@{env.str('POSTGRES_HOST')}:{env.str('POSTGRES_PORT')}/{env.str('POSTGRES_DB')}",
+        )
+    )
 }
 
 
