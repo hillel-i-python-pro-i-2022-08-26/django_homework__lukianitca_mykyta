@@ -1,7 +1,10 @@
 # core
 django==4.1.1
-faker==15.1.1
+faker==15.1.3
 webargs==8.2.0
+
+# DB connector
+psycopg2-binary==2.9.5
 
 # enviroment
 django-environ==0.9.0
