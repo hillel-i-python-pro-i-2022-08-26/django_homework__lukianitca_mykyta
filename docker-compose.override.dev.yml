@@ -4,3 +4,6 @@ services:
   app:
     ports:
       - "18000:8000"
+  postgres:
+    ports:
+      - "15432:5432"
