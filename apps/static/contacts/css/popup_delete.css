@@ -1,4 +1,4 @@
-.modal {
+.modal-window {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -6,13 +6,13 @@
     border: 1px solid black;
     transition: 0.2s ease-in-out;
     border-radius: 10px;
-    z-index: 20;
+    z-index: 999;
     background: white;
     width: 500px;
     max-width: 80%;
 }
 
-.modal.active {
+.modal-window.active-modal {
     transform: translate(-50%, -50%) scale(1);
 }
 

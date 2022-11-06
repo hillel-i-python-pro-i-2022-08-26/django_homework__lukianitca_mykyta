@@ -11,18 +11,18 @@ openModalButtons.forEach(button => {
 
 closeModalButtons.forEach(button => {
     button.addEventListener('click', () => {
-        const modal = button.closest('.modal');
+        const modal = button.closest('.active-modal');
         closeModal(modal);
     })
 })
 
 function openModal(modal) {
     if (modal == null) return;
-    modal.classList.add('active');
+    modal.classList.add('active-modal');
     overlay.classList.add('active');
 }
 
 function closeModal(modal) {
-    modal.classList.remove('active');
+    modal.classList.remove('active-modal');
     overlay.classList.remove('active');
 }
