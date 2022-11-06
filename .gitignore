@@ -129,6 +129,7 @@ dmypy.json
 
 .idea/
 apps/contacts/test.py
-db/
-!db/.gitkeep
+
 docker-compose.override.yml
+
+staticfiles/
