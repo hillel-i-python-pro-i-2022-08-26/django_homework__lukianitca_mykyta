@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse_lazy
 
 
 class Contact(models.Model):
@@ -10,13 +10,13 @@ class Contact(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
-        return reverse("contacts:detail_contact", kwargs={"contact_id": self.pk})
+        return reverse_lazy("contacts:detail_contact", kwargs={"pk": self.pk})
 
     def get_update_url(self):
-        return reverse("contacts:update_contact", kwargs={"contact_id": self.pk})
+        return reverse_lazy("contacts:update_contact", kwargs={"pk": self.pk})
 
     def get_delete_url(self):
-        return reverse("contacts:delete_contact", kwargs={"contact_id": self.pk})
+        return reverse_lazy("contacts:delete_contact", kwargs={"pk": self.pk})
 
     def __str__(self):
         return self.contact_name
