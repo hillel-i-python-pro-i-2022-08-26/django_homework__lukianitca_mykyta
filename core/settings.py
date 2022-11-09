@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+if DEBUG:
+    ALLOWED_HOSTS.extend(
+        ["0.0.0.0"]
+    )
 
 # Application definition
 
@@ -43,6 +47,7 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     "apps.base.apps.BaseConfig",
     "apps.contacts.apps.ContactsConfig",
+    "apps.superuser_hw.apps.SuperuserHwConfig",
 ]
 
 THIRD_PARTY_APPS = []
@@ -93,6 +98,8 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = "superuser_hw.User"
 
 AUTH_PASSWORD_VALIDATORS = [
     {

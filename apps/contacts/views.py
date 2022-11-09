@@ -3,15 +3,23 @@ from django.shortcuts import render, redirect
 
 from apps.contacts.forms import ContactForm
 from apps.contacts.models import Contact
+from apps.contacts.services import update_request_obj
 
 
 def show_contacts(request: HttpRequest) -> HttpResponse:
     contacts_list = Contact.objects.all()
-    return render(request, "contacts/show_contacts.html", {"title": "Contacts List", "contacts": contacts_list})
+    context = {
+        "title": "Contacts List",
+        "contacts": contacts_list,
+        "contacts_visited": request.session.get("visited", 0),
+        "last_visit": request.session.get("last_visit", "Contacts haven't been visited yet"),
+    }
+    return render(request, "contacts/show_contacts.html", context)
 
 
 def detail_contact(request: HttpRequest, contact_id: int) -> HttpResponse:
     contact_obj = Contact.objects.get(pk=contact_id)
+    request = update_request_obj(request)
     return render(request, "contacts/detail_contact.html", {"title": "Detail Contact", "contact": contact_obj})
 
 
