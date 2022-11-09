@@ -1,5 +1,6 @@
 {% extends "_helpers/_base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block styles %}
     <link rel="stylesheet" type="text/css" href="{% static "contacts/css/form.css" %}">
@@ -11,13 +12,13 @@
     <h2 class="form-description">Add contact</h2>
     <form action="{% url 'contacts:add_contact' %}" method="post">
         {% csrf_token %}
-
-        {% for field in form %}
-            <div class="form-field">
-                {{ field.errors }}
-                {{ field.label_tag }} {{ field }}
-            </div>
-        {% endfor %}
+        {{ form | crispy }}
+{#        {% for field in form %}#}
+{#            <div class="form-field">#}
+{#                {{ field.errors }}#}
+{#                {{ field.label_tag }} {{ field }}#}
+{#            </div>#}
+{#        {% endfor %}#}
 
         <input type="submit" value="Submit" class="submit">
     </form>

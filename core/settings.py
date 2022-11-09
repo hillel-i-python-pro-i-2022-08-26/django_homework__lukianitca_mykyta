@@ -12,8 +12,13 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+from environ import Env
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = Env()
+env.read_env(BASE_DIR.joinpath(".env"))
 
 APPS_DIR = BASE_DIR.joinpath("apps")
 
@@ -21,17 +26,18 @@ APPS_DIR = BASE_DIR.joinpath("apps")
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-ygfvho%nlq)y8yxlr!hxq)cj+bxo=1crzrn7l06pz7xpu+5yqb"
+# SECRET_KEY = "django-insecure-ygfvho%nlq)y8yxlr!hxq)cj+bxo=1crzrn7l06pz7xpu+5yqb"
+SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = env.bool("DEBUG")
 
+# ALLOWED_HOSTS = []
 ALLOWED_HOSTS = []
 
 if DEBUG:
-    ALLOWED_HOSTS.extend(
-        ["0.0.0.0"]
-    )
+    ALLOWED_HOSTS.extend(env.list("DJANGO_ALLOWED_HOSTS", default=[]))
 
 # Application definition
 
@@ -50,9 +56,16 @@ LOCAL_APPS = [
     "apps.superuser_hw.apps.SuperuserHwConfig",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    "crispy_forms",
+    "crispy_bootstrap5",
+]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -89,10 +102,13 @@ WSGI_APPLICATION = "core.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR.joinpath("db") / "db.sqlite3",
-    }
+    "default": env.db_url_config(
+        env.str(
+            "DJANGO_DB_URL",
+            f"postgres://{env.str('POSTGRES_USER')}:{env.str('POSTGRES_PASSWORD')}"
+            f"@{env.str('POSTGRES_HOST')}:{env.str('POSTGRES_PORT')}/{env.str('POSTGRES_DB')}",
+        )
+    )
 }
 
 
@@ -134,9 +150,11 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATIC_ROOT = BASE_DIR.joinpath("/")
+STATIC_ROOT = BASE_DIR.joinpath("staticfiles")
 
-STATICFILES_DIRS = [BASE_DIR.joinpath("static")]
+STATICFILES_DIRS = [
+    BASE_DIR.joinpath("apps/static"),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
