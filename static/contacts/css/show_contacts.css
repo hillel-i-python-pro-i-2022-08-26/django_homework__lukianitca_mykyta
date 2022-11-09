@@ -1,0 +1,92 @@
+.search-wrapper {
+    width: 600px;
+    margin: 2rem auto;
+}
+
+.label-search {
+    font-size: 19px;
+}
+
+#search {
+    width: 200px;
+    height: 25px;
+    margin-left: 8px;
+    padding: 7px;
+    border: 1px solid rgba(216, 216, 225, 0.56);
+    border-radius: 5px;
+}
+
+.add-contact-icon {
+    width: 23px;
+    margin-left: 5px;
+}
+
+.contact-card {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    height: 150px;
+    margin: 2rem auto;
+    border-radius: 6px;
+}
+
+.shadow {
+    border: none;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.contact-data {
+    display: flex;
+}
+
+.contact-image__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+}
+
+.contact__image {
+    width: 130px;
+    border-radius: 50%;
+}
+
+.contact-info__container {
+    margin: 15px;
+
+}
+
+.contact__title {
+    font-size: 22px;
+}
+
+.contact__title > a {
+    color: black;
+}
+
+.contact__number {
+    font-size: 16px;
+    color: #919198;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+.contact-icons__container {
+    display: flex;
+    margin: 15px;
+    flex-direction: row-reverse;
+    width: 60px;
+}
+
+.contact__icon {
+    width: 25px;
+}
+
+#search:focus, #search:active {
+    border-color: rgba(71, 141, 215, 0.7);
+}
+
+.hide {
+    display: none;
+}

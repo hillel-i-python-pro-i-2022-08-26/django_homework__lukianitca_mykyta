@@ -3,7 +3,7 @@ import logging
 from django.core.management import BaseCommand
 from django.utils import timezone
 
-from apps.contacts.models import Contacts
+from apps.contacts.models import Contact
 
 
 class Command(BaseCommand):
@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         datetime_delete = timezone.now() - timezone.timedelta(minutes=1)
-        sorted_contacts = Contacts.objects.order_by("created_at").filter(created_at__lt=datetime_delete)
+        sorted_contacts = Contact.objects.order_by("created_at").filter(created_at__lt=datetime_delete)
         if not sorted_contacts:
             self.logger.info("Old data was not found")
             return

@@ -1,0 +1,43 @@
+{% extends "_helpers/_base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static "contacts/css/details_contact.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "contacts/css/popup_delete.css" %}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static "contacts/js/popup_delete.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="contact-wrapper">
+    {% include 'contacts/inc/popup_delete.html' %}
+    <div class="contact-image__container">
+        <img src="{% static "contacts/temp_photo/contact_profile.jpg" %}" alt="contact picture" class="contact-image">
+    </div>
+    <div class="contact-info__container">
+        <div class="contact-title__container">
+            <h1 class="contact-title">{{ contact.contact_name }}</h1>
+        </div>
+        <div class="contact-other__container">
+            <div class="contact-other__main">
+                <p>Phone number: {{ contact.phone_number }}</p>
+                <p>Birth date: {{ contact.birth_date }}</p>
+            </div>
+            <div class="contact-other__time-info">
+                <p>Contact created: {{ contact.created_at }}</p>
+                <p>Contact updated: {{ contact.updated_at }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="buttons__container">
+        <a href="{{ contact.get_update_url }}">
+            <div class="button button-update">Update</div>
+        </a>
+        <div data-modal-target="#modal" class="button button-delete">
+            Delete
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,95 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border: 1px solid black;
+    transition: 0.2s ease-in-out;
+    border-radius: 10px;
+    z-index: 20;
+    background: white;
+    width: 500px;
+    max-width: 80%;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.modal-header > .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header > .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 10px 15px;
+    border-bottom: 1px solid black;
+}
+
+.contact-name {
+    font-size: 18px;
+}
+
+.contact-phone {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #b0b0b0;
+    font-style: italic;
+}
+
+.modal-footer {
+    display: flex;
+    padding: 10px 15px;
+    justify-content: flex-end;
+}
+
+.buttons__container__popup {
+    width: 220px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-cancel {
+    background: white;
+    border: rgb(64, 149, 191) 1px solid;
+    color: rgb(64, 149, 191);
+}
+
+.button-cancel:hover {
+    background: rgb(217, 234, 242);
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
