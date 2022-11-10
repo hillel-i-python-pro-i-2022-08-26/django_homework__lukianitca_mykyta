@@ -50,6 +50,7 @@
         {% endfor %}
 
     {% else %}
-        <h2>Contact list is empty :(</h2>
+        <h2 class="empty-contact-list">Contact list is empty :(</h2>
+        <a href="{% url "contacts:add_contact" %}" class="add-contact-link">Add new contact here.</a>
     {% endif %}
 {% endblock %}
