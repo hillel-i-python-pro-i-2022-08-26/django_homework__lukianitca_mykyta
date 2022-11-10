@@ -30,6 +30,18 @@
     margin-left: 5px;
 }
 
+.empty-contact-list {
+    margin: 1.5em;
+
+    text-align: center;
+    font-size: 22px;
+}
+
+.add-contact-link {
+    text-align: center;
+    font-size: 16px;
+}
+
 .contact-card {
     display: flex;
     justify-content: space-between;
