@@ -3,10 +3,6 @@ from django.views.generic import TemplateView
 from apps.base.services import FakeEngine, UsersDataGenerator
 
 
-# def index(request):
-#     return render(request, "base/index.html", {"title": "Main page"})
-
-
 class IndexPage(TemplateView):
     template_name = "base/index.html"
 
@@ -14,17 +10,6 @@ class IndexPage(TemplateView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Main page"
         return context
-
-
-# def greetings(request, username: str | None = None):
-#     if not username:
-#         username = FakeEngine().generate_fake_name()
-#     context = {
-#         "username": username,
-#         "title": "Greetings",
-#         "current_offers": [f"Offer {i}" for i in range(1, 6)],
-#     }
-#     return render(request, "base/greet_user.html", context)
 
 
 class GreetingsPage(TemplateView):
@@ -43,11 +28,6 @@ class GreetingsPage(TemplateView):
             }
         )
         return context
-
-
-# def users_info(request, amount_users: int | None = 10):
-#     users_list = UsersDataGenerator(amount_users).unique_users
-#     return render(request, "base/unique_users.html", {"title": "Unique Users", "unique_users": users_list})
 
 
 class UsersInfoView(TemplateView):
