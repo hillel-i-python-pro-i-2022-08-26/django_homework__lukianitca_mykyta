@@ -1,10 +1,18 @@
 from django.db import models
 from django.urls import reverse_lazy
 
+from apps.services.image_paths import get_contact_photo_path
+
 
 class Contact(models.Model):
     contact_name = models.CharField(max_length=120)
     phone_number = models.CharField(max_length=40)
+    contact_photo = models.ImageField(
+        max_length=255,
+        null=True,
+        blank=True,
+        upload_to=get_contact_photo_path,
+    )
     birth_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
