@@ -28,8 +28,13 @@
 
                 <div class="contact-data">
                     <div class="contact-image__container">
-                        <img src="{% static "contacts/temp_photo/contact_profile.jpg" %}" class="contact__image"
-                             alt="contact image">
+                        {% if contact.contact_photo %}
+                            <img src="{{ contact.contact_photo.url }}" class="contact__image"
+                                 alt="contact image">
+                        {% else %}
+                            <img src="{% static "contacts/temp_photo/contact_profile.jpg" %}" class="contact__image"
+                                 alt="contact image empty">
+                        {% endif %}
                     </div>
                     <div class="contact-info__container">
                         <h2 class="contact__title">
