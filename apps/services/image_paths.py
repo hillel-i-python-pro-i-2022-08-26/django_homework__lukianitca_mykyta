@@ -13,11 +13,25 @@ def _generate_pseudo_id(amount_of_iterations: int = 3) -> str:
     )
 
 
+def _split_file_name(filename: str) -> list:
+    return filename.rsplit(".", maxsplit=1)
+
+
 def get_avatar_path_user(instance, avatar: str):
-    _, extension = avatar.rsplit(".", maxsplit=1)
+    _, extension = _split_file_name(avatar)
     return (
         f"users/user/avatar/"
         f"{_generate_pseudo_id(amount_of_iterations=4)}/"
         f"{_generate_pseudo_id(amount_of_iterations=1)}/"
         f"avatar.{extension}"
+    )
+
+
+def get_contact_photo_path(instance, contact_photo: str):
+    _, extension = _split_file_name(contact_photo)
+    return (
+        f"contacts/contact/photo/"
+        f"{_generate_pseudo_id(amount_of_iterations=4)}/"
+        f"{_generate_pseudo_id(amount_of_iterations=1)}/"
+        f"photo.{extension}"
     )
