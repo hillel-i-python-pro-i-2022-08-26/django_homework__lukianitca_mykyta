@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static "contacts/css/form.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "contacts/css/form.css" %}">
 {% endblock %}
 
 
@@ -12,7 +12,7 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form | crispy }}
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" class="submit">
     </form>
 </div>
 {% endblock %}

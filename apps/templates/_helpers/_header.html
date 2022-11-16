@@ -22,16 +22,14 @@
         {% if user.is_authenticated %}
             <div class="user-info-container">
                 <a href="{% url "auth_user_app:logout" %}">Logout</a>
-                {% if user.avatar %}
-                    <div class="user-avatar-container">
+                <div class="user-avatar-container">
+                    {% if user.avatar %}
                         <img src="{{ user.avatar.url }}" alt="avatar" class="user-avatar">
-                    </div>
-                {% else %}
-                    <div class="user-avatar-container">
+                    {% else %}
                         <img src="{% static "contacts/temp_photo/contact_profile.jpg" %}"
                              alt="avatar" class="user-avatar">
-                    </div>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
         {% else %}
             <div class="auth-user-links-container">
