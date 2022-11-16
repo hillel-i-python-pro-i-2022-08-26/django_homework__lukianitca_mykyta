@@ -15,7 +15,6 @@ class RegisterUserView(CreateView):
 class LoginUserView(LoginView):
     form_class = AuthenticationForm
     template_name = "auth_templates/auth_form.html"
-    success_url = reverse_lazy("base:index")
 
 
 class LogoutUserView(LogoutView):
