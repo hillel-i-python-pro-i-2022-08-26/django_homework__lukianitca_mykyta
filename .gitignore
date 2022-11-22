@@ -133,3 +133,5 @@ apps/contacts/test.py
 docker-compose.override.yml
 
 staticfiles/
+media/
+!media/.gitkeep

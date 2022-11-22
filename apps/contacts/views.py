@@ -1,53 +1,48 @@
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views import generic
 
 from apps.contacts.forms import ContactForm
 from apps.contacts.models import Contact
 from apps.contacts.services import update_request_obj
 
 
-def show_contacts(request: HttpRequest) -> HttpResponse:
-    contacts_list = Contact.objects.all()
-    context = {
-        "title": "Contacts List",
-        "contacts": contacts_list,
-        "contacts_visited": request.session.get("visited", 0),
-        "last_visit": request.session.get("last_visit", "Contacts haven't been visited yet"),
-    }
-    return render(request, "contacts/show_contacts.html", context)
+class ListContacts(generic.ListView):
+    template_name = "contacts/show_contacts.html"
+    context_object_name = "contacts"
+    model = Contact
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(
+            {
+                "title": "Contacts List",
+                "contacts_visited": self.request.session.get("visited", 0),
+                "last_visit": self.request.session.get("last_visit", "Contacts haven't been visited yet"),
+            }
+        )
+        return context
 
 
-def detail_contact(request: HttpRequest, contact_id: int) -> HttpResponse:
-    contact_obj = Contact.objects.get(pk=contact_id)
-    request = update_request_obj(request)
-    return render(request, "contacts/detail_contact.html", {"title": "Detail Contact", "contact": contact_obj})
+class DetailContact(generic.DetailView):
+    model = Contact
+    template_name = "contacts/detail_contact.html"
+
+    def get(self, request, *args, **kwargs):
+        request = update_request_obj(request)
+        return super().get(request, *args, **kwargs)
 
 
-def add_contact(request: HttpRequest) -> HttpResponse:
-    if request.method == "POST":
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            new_contact = form.save()
-            return redirect(new_contact)
-        return render(request, "contacts/add_contact.html", {"title": "Add Contact", "form": form})
-    else:
-        form = ContactForm()
-    return render(request, "contacts/add_contact.html", {"title": "Add Contact", "form": form})
+class CreateContact(generic.CreateView):
+    form_class = ContactForm
+    template_name = "contacts/add_contact.html"
 
 
-def update_contact(request: HttpRequest, contact_id: int) -> HttpResponse:
-    contact_obj = Contact.objects.get(pk=contact_id)
-    if request.method == "POST":
-        form = ContactForm(request.POST, instance=contact_obj)
-        if form.is_valid():
-            updated_contact = form.save()
-            return redirect(updated_contact)
-        return render(request, "contacts/update_contact.html", {"title": "Update Contact", "form": form})
-    else:
-        form = ContactForm(instance=contact_obj)
-    return render(request, "contacts/update_contact.html", {"title": "Update Contact", "form": form})
+class UpdateContact(generic.UpdateView):
+    form_class = ContactForm
+    model = Contact
+    template_name = "contacts/update_contact.html"
 
 
-def delete_contact(request: HttpRequest, contact_id: int) -> HttpResponse:
-    Contact.objects.get(pk=contact_id).delete()
-    return redirect("contacts:show_contacts")
+class DeleteContact(generic.DeleteView):
+    model = Contact
+    success_url = reverse_lazy("contacts:show_contacts")

@@ -14,7 +14,14 @@
 <div class="contact-wrapper">
     {% include 'contacts/inc/popup_delete.html' %}
     <div class="contact-image__container">
-        <img src="{% static "contacts/temp_photo/contact_profile.jpg" %}" alt="contact picture" class="contact-image">
+        {% if contact.contact_photo %}
+            <img src="{{ contact.contact_photo.url }}" alt="contact picture"
+                 class="contact-image">
+        {% else %}
+            <img src="{% static "contacts/temp_photo/contact_profile.jpg" %}" alt="contact picture default"
+             class="contact-image">
+        {% endif %}
+
     </div>
     <div class="contact-info__container">
         <div class="contact-title__container">

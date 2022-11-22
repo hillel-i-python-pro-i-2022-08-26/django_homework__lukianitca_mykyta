@@ -21,7 +21,7 @@ class ContactForm(forms.ModelForm):
 
     class Meta:
         model = models.Contact
-        fields = ("contact_name", "phone_number", "birth_date")
+        fields = ("contact_name", "phone_number", "birth_date", "contact_photo")
         widgets = {
             "birth_date": forms.DateInput(
                 attrs={

@@ -16,5 +16,11 @@
                 Contacts
             </a>
         </div>
+        {% if user.avatar %}
+            <div class="user-avatar-container">
+                <img src="{{ user.avatar.url }}" alt="avatar" class="user-avatar">
+            </div>
+        {% endif %}
+
     </nav>
 </header>

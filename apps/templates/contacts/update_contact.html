@@ -10,7 +10,7 @@
 {% block content %}
 <div class="form-wrapper">
     <h2 class="form-description">Update contact</h2>
-    <form action="{{ form.instance.get_update_url }}" method="post">
+    <form action="{{ form.instance.get_update_url }}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form | crispy }}
 {#        {% for field in form %}#}

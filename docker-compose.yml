@@ -11,6 +11,7 @@ services:
       - "8000:8000"
     volumes:
       - ./staticfiles:/wd/staticfiles
+      - ./media:/wd/media:rw
     user: "1000"
     environment:
       - POSTGRES_HOST=postgres

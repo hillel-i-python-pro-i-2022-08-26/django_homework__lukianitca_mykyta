@@ -25,7 +25,7 @@ header {
 .nav-links {
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
 }
 
 .nav-links__main-link {
@@ -44,4 +44,14 @@ header {
     font-size: 25px;
     color: black;
     text-decoration: none;
+}
+
+.user-avatar-container {
+    margin-right: 1em;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
