@@ -1,3 +1,5 @@
+{% load static %}
+
 <header>
     <nav class="nav-links">
         <div class="nav-links__main-page">
@@ -16,11 +18,26 @@
                 Contacts
             </a>
         </div>
-        {% if user.avatar %}
-            <div class="user-avatar-container">
-                <img src="{{ user.avatar.url }}" alt="avatar" class="user-avatar">
+
+        {% if user.is_authenticated %}
+            <div class="user-info-container">
+                <a href="{% url "auth_user_app:logout" %}">Logout</a>
+                <div class="user-avatar-container">
+                    {% if user.avatar %}
+                        <img src="{{ user.avatar.url }}" alt="avatar" class="user-avatar">
+                    {% else %}
+                        <img src="{% static "contacts/temp_photo/contact_profile.jpg" %}"
+                             alt="avatar" class="user-avatar">
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <div class="auth-user-links-container">
+                <a href="{% url "auth_user_app:sign_up" %}">Sign Up</a>
+                <a href="{% url "auth_user_app:login" %}">Log In</a>
             </div>
         {% endif %}
+
 
     </nav>
 </header>

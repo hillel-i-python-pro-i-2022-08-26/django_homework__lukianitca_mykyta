@@ -47,11 +47,27 @@ header {
 }
 
 .user-avatar-container {
-    margin-right: 1em;
+    margin: auto 1em;
 }
 
 .user-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+.user-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.auth-user-links-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.auth-user-links-container > a {
+    margin: auto 1.5em;
 }

@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -6,10 +7,11 @@ from apps.contacts.models import Contact
 from apps.contacts.services import update_request_obj
 
 
-class ListContacts(generic.ListView):
+class ListContacts(LoginRequiredMixin, generic.ListView):
     template_name = "contacts/show_contacts.html"
     context_object_name = "contacts"
     model = Contact
+    login_url = reverse_lazy("auth_user_app:login")
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
