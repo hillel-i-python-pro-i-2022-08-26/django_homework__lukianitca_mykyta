@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from apps.superuser_hw.models import User
+from apps.superuser_hw.models import User, Request
 
 
 class UserAdminCustom(UserAdmin):
@@ -13,7 +13,13 @@ class UserAdminCustom(UserAdmin):
             },
         ),
     )
-    fieldsets = UserAdmin.fieldsets + (("Extra Fields", {"fields": ("avatar",)}),)
+    fieldsets = UserAdmin.fieldsets + (
+        (
+            "Extra Fields",
+            {"fields": ("avatar",)},
+        ),
+    )
 
 
 admin.site.register(User, UserAdminCustom)
+admin.site.register(Request)
