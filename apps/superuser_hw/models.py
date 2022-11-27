@@ -16,10 +16,10 @@ class User(AbstractUser):
 class Request(models.Model):
     session_key = models.CharField(max_length=100)
     path = models.CharField(max_length=200)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="requests_info")
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="requests_info", null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    visits_count = models.IntegerField()
+    visits_count = models.IntegerField(default=0)
 
     class Meta:
         constraints = (
