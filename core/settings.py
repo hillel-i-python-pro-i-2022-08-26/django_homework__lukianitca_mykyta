@@ -75,8 +75,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "apps.superuser_hw.middlewares.LogTrackRequestsMiddleware",
 ]
+
+if env.bool("IS_ACTIVE__REQUEST_TRACKING_MIDDLEWARE"):
+    MIDDLEWARE += ["apps.superuser_hw.middlewares.LogTrackRequestsMiddleware"]
 
 ROOT_URLCONF = "core.urls"
 
