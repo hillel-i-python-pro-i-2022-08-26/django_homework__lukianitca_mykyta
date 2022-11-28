@@ -1,1 +1,1 @@
-from .track_request import manage_request_object
+from .track_request import manage_request_object, normalize_session_key
