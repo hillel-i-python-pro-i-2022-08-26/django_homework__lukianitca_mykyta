@@ -1,0 +1,25 @@
+{% extends "_helpers/_base.html" %}
+
+{% block content %}
+<div class="row justify-content-center m-4">
+    {% for request in requests %}
+        <div class="card col-8 m-2">
+            <div class="card-body">
+                <h4 class="card-title h4">
+                        {{ request.path|truncatechars:50 }}
+                </h4>
+                <h6 class="card-subtitle mb-2 text-muted">Session key: {{ request.session_key }}</h6>
+                <p class="mb-2 text-muted">
+                    User:
+                    {% if request.user %}
+                        {{ request.user }}
+                    {% else %}
+                        Anonymous User
+                    {% endif %}
+                </p>
+                <p class="card-text">Visits count: {{ request.visits_count }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
