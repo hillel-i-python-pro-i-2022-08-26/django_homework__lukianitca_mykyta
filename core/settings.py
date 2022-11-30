@@ -101,6 +101,31 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 
 
+if DEBUG:
+    # Bug fix
+    import mimetypes
+
+    mimetypes.add_type("application/javascript", ".js", True)
+
+    INSTALLED_APPS += [
+        "debug_toolbar",
+    ]
+
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]
+
+    INTERNAL_IPS = [
+        "127.0.0.1",
+    ]
+
+    # Docker compatibility
+    import socket
+
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS += [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
+
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
