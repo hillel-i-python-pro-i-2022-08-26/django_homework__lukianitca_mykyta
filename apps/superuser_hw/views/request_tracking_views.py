@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum
 from django.urls import reverse_lazy
 
 from apps.superuser_hw.models import Request
@@ -17,11 +18,14 @@ class SessionRequestsView(BaseRequestsView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Session Requests"
+        objs = Request.objects.filter(session_key=normalize_session_key(self.request.session))
+        context["sum_requests"] = objs.aggregate(Sum("visits_count")).get("visits_count__sum")
+        context["paths"] = objs.count()
         return context
 
     def get_queryset(self):
         session_key = normalize_session_key(self.request.session)
-        return Request.objects.filter(session_key=session_key)
+        return Request.objects.filter(session_key=session_key).prefetch_related("user")
 
 
 class UsersRequestsView(LoginRequiredMixin, BaseRequestsView):
@@ -30,6 +34,7 @@ class UsersRequestsView(LoginRequiredMixin, BaseRequestsView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "User's Requests"
+        context["sum_requests"] = self.request.user.requests_info.all().count()
         return context
 
     def get_queryset(self):
