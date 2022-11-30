@@ -22,7 +22,7 @@ class Request(models.Model):
     visits_count = models.IntegerField(default=1)
 
     def __str__(self):
-        return f"{self.session_key} - {self.path} - {self.user or 'Anonymous'}"
+        return f"{self.session_key} - {self.path} - {self.user or 'Anonymous'} - {self.visits_count}"
 
     class Meta:
         constraints = (

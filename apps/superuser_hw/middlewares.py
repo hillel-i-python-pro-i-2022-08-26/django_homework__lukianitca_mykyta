@@ -3,7 +3,7 @@ from collections.abc import Callable
 
 from django.http import HttpRequest
 
-from apps.superuser_hw.services import manage_request_object
+from apps.superuser_hw.services import RequestTracker
 
 
 class LogTrackRequestsMiddleware:
@@ -16,9 +16,9 @@ class LogTrackRequestsMiddleware:
 
     def __call__(self, request: HttpRequest):
 
-        self.logger.info("[START] request tracking [START]")
+        self.logger.info("[START] Request tracking [START]")
 
-        manage_request_object(request)
+        RequestTracker(request, self.logger).manage_request_object()
 
-        self.logger.info("[END] request tracking [END]")
+        self.logger.info("[END] Request tracking [END]\n")
         return self.get_response(request)

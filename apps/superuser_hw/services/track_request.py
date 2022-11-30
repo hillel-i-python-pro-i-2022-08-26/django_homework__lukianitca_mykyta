@@ -1,3 +1,5 @@
+from logging import Logger
+
 from django.http import HttpRequest
 
 from apps.superuser_hw.models import Request
@@ -9,30 +11,42 @@ def normalize_session_key(session):
     return session.session_key
 
 
-def collect_request_info(request_obj: HttpRequest):
-    user = request_obj.user if request_obj.user.is_authenticated else None
+class RequestTracker:
+    def __init__(self, request_obj: HttpRequest, logger: Logger):
+        self.request_obj = request_obj
+        self.logger = logger
 
-    return {
-        "session_key": normalize_session_key(request_obj.session),
-        "user": user,
-        "path": request_obj.path,
-    }
+    def manage_request_object(self):
+        request_info = self._collect_request_info()
+        self.logger.info(
+            f"[INFO] "
+            f"{request_info['user'] or 'Anonymous User'} - {request_info['path']} - {request_info['session_key']}"
+            f" [INFO]",
+        )
+        if request_record := Request.objects.filter(**request_info).first():
+            self.logger.info("[ACTION-START] Request record exists. Start updating [ACTION-START]")
+            self._update_request_record(request_record)
+        else:
+            self.logger.info("[ACTION-START] Request record doesn't exist. Start creating [ACTION-START]")
+            self._create_request_record(request_info)
 
+    def _collect_request_info(self):
+        user = self.request_obj.user if self.request_obj.user.is_authenticated else None
 
-def update_request_record(request_record: Request):
-    request_record.visits_count += 1
-    request_record.save()
-    return
+        return {
+            "session_key": normalize_session_key(self.request_obj.session),
+            "user": user,
+            "path": self.request_obj.path,
+        }
 
+    def _update_request_record(self, request_record: Request):
+        request_record.visits_count += 1
+        self.logger.info(f"[INSTANCE] {request_record} [INSTANCE]")
+        request_record.save()
+        self.logger.info("[ACTION-END] Request record updated successfully [ACTION-END]")
 
-def create_request_record(request_info: dict):
-    Request(**request_info).save()
-    return
-
-
-def manage_request_object(request_obj):
-    request_info = collect_request_info(request_obj)
-    if request_record := Request.objects.filter(**request_info).first():
-        update_request_record(request_record)
-    else:
-        create_request_record(request_info)
+    def _create_request_record(self, request_info: dict):
+        request_record = Request(**request_info)
+        self.logger.info(f"[INSTANCE] {request_record} [INSTANCE]")
+        request_record.save()
+        self.logger.info("[ACTION-END] Request record created successfully [ACTION-END]")
