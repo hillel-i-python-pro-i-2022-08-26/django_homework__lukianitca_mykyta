@@ -3,19 +3,21 @@
 {% block content %}
 <div class="row justify-content-center m-4">
     {% if request_info %}
-        <p class="h3">Total visits: {{ request_info.sum_requests }}</p>
-        <p class="h3">All paths: {{ request_info.paths_count }}</p>
+        <div class="m-4 request_info">
+            <p class="h3">Total visits: {{ request_info.sum_requests }}</p>
+            <p class="h3">All paths: {{ request_info.paths_count }}</p>
+        </div>
     {% endif %}
     {% for request in requests %}
         <div class="card col-8 m-2">
             <div class="card-body">
                 <h4 class="card-title h4">
-                        {{ request.path|truncatechars:50 }}
+                    {{ request.path|truncatechars:50 }}
                 </h4>
                 <h6 class="card-subtitle mb-2 text-muted">Session key: {{ request.session_key }}</h6>
                 <p class="mb-2 text-muted">
                     User:
-                    {% if request.user %}
+                    {% if request.user_id %}
                         {{ request.user }}
                     {% else %}
                         Anonymous User
