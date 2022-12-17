@@ -17,6 +17,32 @@
             <a href="{% url 'contacts:show_contacts' %}">
                 Contacts
             </a>
+            <div class="nav-item dropdown dropdown-custom">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                   aria-expanded="false">
+                    Requests
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{% url "request_tracking:all_requests" %}">
+                            All requests
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url "request_tracking:session_requests" %}">
+                            Session requests
+                        </a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a class="dropdown-item" href="{% url "request_tracking:users_requests" %}">
+                                User's requests
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
         </div>
 
         {% if user.is_authenticated %}

@@ -77,6 +77,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+if env.bool("IS_ACTIVE__REQUEST_TRACKING_MIDDLEWARE"):
+    MIDDLEWARE += ["apps.superuser_hw.middlewares.LogTrackRequestsMiddleware"]
+
 ROOT_URLCONF = "core.urls"
 
 TEMPLATES = [
@@ -96,6 +99,31 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "core.wsgi.application"
+
+
+if DEBUG:
+    # Bug fix
+    import mimetypes
+
+    mimetypes.add_type("application/javascript", ".js", True)
+
+    INSTALLED_APPS += [
+        "debug_toolbar",
+    ]
+
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]
+
+    INTERNAL_IPS = [
+        "127.0.0.1",
+    ]
+
+    # Docker compatibility
+    import socket
+
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS += [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
 
 
 # Database

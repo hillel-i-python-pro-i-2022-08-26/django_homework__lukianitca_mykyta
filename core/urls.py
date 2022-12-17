@@ -19,10 +19,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path("__debug__/", include("debug_toolbar.urls")),
     path("admin/", admin.site.urls),
     path("", include("apps.base.urls")),
     path("contacts/", include("apps.contacts.urls")),
-    path("auth-user/", include("apps.superuser_hw.urls")),
+    path("auth-user/", include("apps.superuser_hw.urls.auth_user_urls")),
+    path("requests-tracking/", include("apps.superuser_hw.urls.requests_tracking_urls")),
 ]
 
 
