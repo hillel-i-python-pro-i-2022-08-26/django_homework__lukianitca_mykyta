@@ -48,12 +48,14 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
 ]
 
 LOCAL_APPS = [
     "apps.base.apps.BaseConfig",
     "apps.contacts.apps.ContactsConfig",
     "apps.superuser_hw.apps.SuperuserHwConfig",
+    "apps.api_contacts.apps.ApiContactsConfig",
 ]
 
 THIRD_PARTY_APPS = [
