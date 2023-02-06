@@ -9,7 +9,7 @@ class ContactsViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(user_id=self.request.user.pk)
 
     def get_queryset(self):
         return self.request.user.contacts.all()
