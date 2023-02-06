@@ -1,9 +1,15 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from apps.contacts.models import Contact
 from .serializers import ContactsSerializer
 
 
 class ContactsViewSet(ModelViewSet):
     serializer_class = ContactsSerializer
-    queryset = Contact.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        return self.request.user.contacts.all()
