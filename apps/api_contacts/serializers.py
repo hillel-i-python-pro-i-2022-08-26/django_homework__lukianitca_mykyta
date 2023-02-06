@@ -1,9 +1,9 @@
-from rest_framework.serializers import HyperlinkedModelSerializer
+from rest_framework import serializers
 
 from apps.contacts.models import Contact
 
 
-class ContactsSerializer(HyperlinkedModelSerializer):
+class ContactsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Contact
         fields = [
@@ -15,5 +15,6 @@ class ContactsSerializer(HyperlinkedModelSerializer):
             "birth_date",
             "created_at",
             "updated_at",
+            "user_id",
         ]
-        read_only_fields = ["pk", "created_at", "updated_at"]
+        read_only_fields = ["pk", "created_at", "updated_at", "user_id"]
