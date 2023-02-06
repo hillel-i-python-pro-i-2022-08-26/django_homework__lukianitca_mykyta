@@ -25,6 +25,7 @@ urlpatterns = [
     path("contacts/", include("apps.contacts.urls")),
     path("auth-user/", include("apps.superuser_hw.urls.auth_user_urls")),
     path("requests-tracking/", include("apps.superuser_hw.urls.requests_tracking_urls")),
+    path("api/", include("apps.api_contacts.urls")),
 ]
 
 
