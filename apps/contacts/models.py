@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse_lazy
 
 from apps.services.image_paths import get_contact_photo_path
+from apps.superuser_hw.models import User
 
 
 class Contact(models.Model):
@@ -16,6 +17,7 @@ class Contact(models.Model):
     birth_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, related_name="contacts", on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse_lazy("contacts:detail_contact", kwargs={"pk": self.pk})
