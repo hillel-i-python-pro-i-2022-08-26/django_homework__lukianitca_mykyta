@@ -1,10 +1,15 @@
+import uuid
+
 from django.db import models
 from django.urls import reverse_lazy
 
 from apps.services.image_paths import get_contact_photo_path
+from apps.services.validators import birth_date_validator
+from apps.superuser_hw.models import User
 
 
 class Contact(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     contact_name = models.CharField(max_length=120)
     phone_number = models.CharField(max_length=40)
     contact_photo = models.ImageField(
@@ -13,9 +18,10 @@ class Contact(models.Model):
         blank=True,
         upload_to=get_contact_photo_path,
     )
-    birth_date = models.DateField()
+    birth_date = models.DateField(validators=[birth_date_validator])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, related_name="contacts", on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse_lazy("contacts:detail_contact", kwargs={"pk": self.pk})

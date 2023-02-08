@@ -48,12 +48,14 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
 ]
 
 LOCAL_APPS = [
     "apps.base.apps.BaseConfig",
     "apps.contacts.apps.ContactsConfig",
     "apps.superuser_hw.apps.SuperuserHwConfig",
+    "apps.api_contacts.apps.ApiContactsConfig",
 ]
 
 THIRD_PARTY_APPS = [
@@ -196,3 +198,9 @@ MEDIA_ROOT = BASE_DIR.joinpath("media")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "base:index"
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+}
